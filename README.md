@@ -23,5 +23,14 @@ The virtual machines are configured with the following static IP addresses on th
 ### Tracked Configuration Files
 * **Netplan Configs:** The YAML configuration files used to establish the static IP routing rules (e.g., `50-cloud-init.yaml`).
 
+
+## Phase 1: Infrastructure & Secure Tunneling (Completed)
+In this phase, I built a secure, encrypted bridge between a physical Windows host and a virtualized Linux server.
+
+**Key Accomplishments:**
+* Configured a dedicated VirtualBox Host-Only network adapter.
+* Set up static IP routing on a headless Ubuntu server using Netplan.
+* Generated cryptographic key pairs and deployed a WireGuard VPN tunnel.
+* Implemented a strict Windows Defender Firewall rule via PowerShell to allow secure lateral ICMP traffic while blocking unauthorized local access.
 ---
-*Document last updated: Phase 0 Completion*
+*Document last updated: Phase 1 Completion*
