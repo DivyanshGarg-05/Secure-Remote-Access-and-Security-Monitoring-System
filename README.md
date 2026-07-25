@@ -43,5 +43,15 @@ In this phase, the internal server (VM2) was isolated and secured so that it is 
 * **Static Kernel Routing:** Configured a custom Netplan routing rule on VM2 to ensure return traffic bound for the VPN is correctly routed back through the VM1 gateway.
 * **SSH Daemon Hardening:** Secured VM2 by enforcing `ed25519` SSH key authentication, disabling password logins entirely, and implementing an `AllowUsers` firewall rule to drop any SSH traffic not originating from the VPN subnet.
 
+
+## Phases 4, 5 & 6: Auditing & Security Monitoring (Completed)
+In this phase, internal security monitoring was established on the secure server (VM2) using the Linux Audit Daemon (`auditd`). The system was configured to intercept kernel system calls and generate an immutable, searchable audit trail of all commands executed by any user who successfully breaches the network perimeter.
+
+**Key Accomplishments:**
+* **Audit Engine Deployment:** Installed and enabled the core `auditd` service and support plugins to continuously monitor the Linux kernel for security events.
+* **Custom Kernel Rules:** Injected a custom configuration rule (`-S execve`) bypassing default wipe configurations, to strictly track all 64-bit program executions and tag them with a unique `command_tracking` identifier.
+* **Forensic Log Analysis:** Utilized `ausearch` to filter and translate raw, dense kernel logs into human-readable data, successfully proving the system captures the exact User ID, working directory, and command arguments of any system activity.
+* **Privilege Escalation Tracking:** Analyzed the master authentication ledger (`/var/log/auth.log`) to verify secure SSH key logins and isolate `sudo` usage, establishing a complete and un-hackable timeline of administrator access.
+
 ---
-*Document last updated: Phase 2 Completion*
+*Document last updated: Phase 4-6 Completion*
