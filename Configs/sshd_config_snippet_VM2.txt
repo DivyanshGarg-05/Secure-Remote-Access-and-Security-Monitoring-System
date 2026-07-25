@@ -1,0 +1,5 @@
+# Disable password authentication in favor of cryptographic keys
+PasswordAuthentication no
+
+# Restrict SSH access exclusively to the employee1 user coming from the VPN subnet
+AllowUsers employee1@10.0.0.*

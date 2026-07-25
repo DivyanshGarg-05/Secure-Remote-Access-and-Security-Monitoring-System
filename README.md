@@ -32,5 +32,16 @@ In this phase, I built a secure, encrypted bridge between a physical Windows hos
 * Set up static IP routing on a headless Ubuntu server using Netplan.
 * Generated cryptographic key pairs and deployed a WireGuard VPN tunnel.
 * Implemented a strict Windows Defender Firewall rule via PowerShell to allow secure lateral ICMP traffic while blocking unauthorized local access.
+
+
+## Phase 2 & 3: Secure Access, Routing & SSH Hardening (Completed)
+In this phase, the internal server (VM2) was isolated and secured so that it is completely invisible to the host network and only accessible via cryptographic keys routed through the WireGuard VPN tunnel (VM1).
+
+**Key Accomplishments:**
+* **Cloud-Init Override:** Disabled Ubuntu's default cloud-init network capabilities to prevent static IP configurations from resetting on reboot.
+* **Gateway IP Forwarding:** Converted VM1 into a functional network router by enabling IPv4 forwarding, allowing it to pass traffic between the VPN subnet (`10.0.0.x`) and the Host-Only subnet (`192.168.56.x`).
+* **Static Kernel Routing:** Configured a custom Netplan routing rule on VM2 to ensure return traffic bound for the VPN is correctly routed back through the VM1 gateway.
+* **SSH Daemon Hardening:** Secured VM2 by enforcing `ed25519` SSH key authentication, disabling password logins entirely, and implementing an `AllowUsers` firewall rule to drop any SSH traffic not originating from the VPN subnet.
+
 ---
-*Document last updated: Phase 1 Completion*
+*Document last updated: Phase 2 Completion*

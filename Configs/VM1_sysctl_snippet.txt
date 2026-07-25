@@ -1,0 +1,2 @@
+# Enable IPv4 packet forwarding to allow VPN traffic to reach the internal network
+net.ipv4.ip_forward=1
